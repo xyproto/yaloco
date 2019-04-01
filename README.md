@@ -1,4 +1,4 @@
-# yaloco
+# YaLoCo
 
 Yet another log colorizer
 
@@ -21,6 +21,6 @@ Colorize logs:
 
 ## General info
 
-* Version: 1.0.0
+* Version: 1.1.0
 * License: MIT
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;

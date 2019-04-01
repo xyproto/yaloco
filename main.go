@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-const versionString = "YALOCO 1.0.0"
+const versionString = "YaLoCo 1.1.0"
 
 func init() {
 	color.NoColor = false
@@ -180,7 +180,7 @@ func colorize(line string) {
 		switch strings.ToLower(word) {
 		case "error", "error:", "abort", "quit":
 			sb.WriteString(color.HiRedString(word))
-		case "warning", "warning:", "removed", "deleted", "erased":
+		case "warning", "warning:", "removed", "deleted", "erased", "o":
 			sb.WriteString(color.HiYellowString(word))
 		case "note", "note:":
 			sb.WriteString(color.HiGreenString(word))
@@ -198,18 +198,38 @@ func colorize(line string) {
 	fmt.Println(sb.String())
 }
 
+func usage() {
+	fmt.Println("Please provide a filename as the first argument, or provide data on stdin.")
+}
+
 func main() {
+	var scanner *bufio.Scanner
 	if len(os.Args) > 1 {
-		if os.Args[1] != "-" {
+		if os.Args[1] == "-V" || os.Args[1] == "--version" {
 			fmt.Println(versionString)
-			os.Exit(1)
+			os.Exit(0)
+		} else if os.Args[1] == "-h" || os.Args[1] == "--help" {
+			usage()
+			os.Exit(0)
+		} else if os.Args[1] == "-" {
+			scanner = bufio.NewScanner(os.Stdin)
+		} else {
+			f, err := os.Open(os.Args[1])
+			if err != nil {
+				fmt.Fprintln(os.Stderr, err)
+				os.Exit(1)
+			}
+			scanner = bufio.NewScanner(f)
 		}
+	} else {
+		scanner = bufio.NewScanner(os.Stdin)
 	}
-	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
 		colorize(scanner.Text())
 	}
 	if err := scanner.Err(); err != nil {
 		fmt.Fprintln(os.Stderr, "reading standard input:", err)
+		os.Exit(1)
+
 	}
 }
