@@ -11,3 +11,16 @@ Colorize build information while building:
 Colorize logs:
 
     yaloco < /var/log/pacman.log
+
+## Installation
+
+### Linux
+
+    go build
+    sudo install -Dm755 yaloco /usr/bin/yaloco
+
+## General info
+
+* Version: 1.0.0
+* License: MIT
+* Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
