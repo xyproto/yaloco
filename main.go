@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-const versionString = "YaLoCo 1.1.0"
+const versionString = "YaLoCo 1.2.0"
 
 func init() {
 	color.NoColor = false
@@ -184,7 +184,7 @@ func colorize(line string) {
 			sb.WriteString(color.HiYellowString(word))
 		case "note", "note:":
 			sb.WriteString(color.HiGreenString(word))
-		case "cxx", "ld", "rm", "make", "strip", "ccgi", "opkg", "install", "run", "running", "move", "format", "upgrading":
+		case "cxx", "ld", "rm", "make", "strip", "ccgi", "opkg", "install", "run", "running", "move", "format", "upgrading", "gcc", "g++", "clang", "clang++", "complete":
 			sb.WriteString(color.BlueString(word))
 		case "upgraded", "installed", "moved", "ran", "formatted":
 			sb.WriteString(color.MagentaString(word))
