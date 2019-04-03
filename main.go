@@ -143,12 +143,8 @@ func colorize(line string) {
 			if c == '\'' && singleToggle {
 				prevColor = colorIndex
 			}
-			// Then output the opening/closing thing
-			if c == '\'' {
-				colorWrite(&rainbowLine, string(c), prevColor)
-			} else {
-				colorWrite(&rainbowLine, string(c), prevColor)
-			}
+			// Then output the opening/closing element
+			colorWrite(&rainbowLine, string(c), prevColor)
 			// Then reset the word
 			word = ""
 		} else if c == ' ' {
