@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-const versionString = "YaLoCo 1.2.0"
+const versionString = "YaLoCo 1.2.1"
 
 func init() {
 	color.NoColor = false
@@ -174,7 +174,7 @@ func colorize(line string) {
 			continue
 		}
 		switch strings.ToLower(word) {
-		case "error", "error:", "abort", "quit":
+		case "error", "error:", "errors", "abort", "quit", "no such file or directory":
 			sb.WriteString(color.HiRedString(word))
 		case "warning", "warning:", "removed", "deleted", "erased", "o":
 			sb.WriteString(color.HiYellowString(word))
@@ -184,7 +184,7 @@ func colorize(line string) {
 			sb.WriteString(color.BlueString(word))
 		case "upgraded", "installed", "moved", "ran", "formatted":
 			sb.WriteString(color.MagentaString(word))
-		case "=", "==", ":=":
+		case "=", "==", ":=", "tar", "zip", "pigz", "gzip", "gunzip":
 			sb.WriteString(color.HiWhiteString(word))
 		default:
 			sb.WriteString(color.CyanString(word))
