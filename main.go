@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-const versionString = "YaLoCo 1.2.1"
+const versionString = "YaLoCo 1.2.2"
 
 func init() {
 	color.NoColor = false
@@ -32,8 +32,12 @@ func colorWrite(sb *strings.Builder, s string, colorIndex int) {
 func colorize(line string) {
 	var sb strings.Builder
 	trimmed := strings.TrimSpace(line)
-	if strings.HasPrefix(trimmed, "//") || strings.HasPrefix(trimmed, "#") || strings.Contains(trimmed, "Leaving directory") || strings.Contains(trimmed, "Entering directory") {
+	if strings.HasPrefix(trimmed, "//") || strings.HasPrefix(trimmed, "#") || strings.Contains(trimmed, "Leaving directory") || strings.Contains(trimmed, "Entering directory") || strings.Contains(trimmed, "Nothing to be done") {
 		fmt.Println(color.HiBlackString(line))
+		return
+	}
+	if strings.Contains(trimmed, "(ignored)") {
+		fmt.Println(color.HiYellowString(line))
 		return
 	}
 	if strings.Contains(trimmed, "In file included from") {
@@ -48,8 +52,12 @@ func colorize(line string) {
 		fmt.Println(color.CyanString(line))
 		return
 	}
-	if (strings.HasPrefix(trimmed, "*") && strings.HasSuffix(trimmed, "*")) || (strings.HasPrefix(trimmed, "-") && strings.HasSuffix(trimmed, "-")) || (strings.HasPrefix(trimmed, "=") && strings.HasSuffix(trimmed, "=")) || strings.Contains(trimmed, "***") || strings.Contains(trimmed, "===") || strings.Contains(trimmed, ">>>") {
+	if strings.Contains(trimmed, "***") || strings.Contains(trimmed, "===") {
 		fmt.Println(color.RedString(line))
+		return
+	}
+	if (strings.HasPrefix(trimmed, "*") && strings.HasSuffix(trimmed, "*")) || (strings.HasPrefix(trimmed, "-") && strings.HasSuffix(trimmed, "-")) || (strings.HasPrefix(trimmed, "=") && strings.HasSuffix(trimmed, "=")) || strings.Contains(trimmed, ">>>") {
+		fmt.Println(color.HiWhiteString(line))
 		return
 	}
 
@@ -174,7 +182,7 @@ func colorize(line string) {
 			continue
 		}
 		switch strings.ToLower(word) {
-		case "error", "error:", "errors", "abort", "quit", "no such file or directory":
+		case "error", "error:", "errors", "errors:", "abort", "quit", "no such file or directory":
 			sb.WriteString(color.HiRedString(word))
 		case "warning", "warning:", "removed", "deleted", "erased", "o":
 			sb.WriteString(color.HiYellowString(word))
@@ -182,9 +190,9 @@ func colorize(line string) {
 			sb.WriteString(color.HiGreenString(word))
 		case "cxx", "ld", "rm", "make", "strip", "ccgi", "opkg", "install", "run", "running", "move", "format", "upgrading", "gcc", "g++", "clang", "clang++", "complete":
 			sb.WriteString(color.BlueString(word))
-		case "upgraded", "installed", "moved", "ran", "formatted":
+		case "upgraded", "installed", "moved", "ran", "formatted", "cp", "mv":
 			sb.WriteString(color.MagentaString(word))
-		case "=", "==", ":=", "tar", "zip", "pigz", "gzip", "gunzip":
+		case "=", "==", ":=", "tar", "zip":
 			sb.WriteString(color.HiWhiteString(word))
 		default:
 			sb.WriteString(color.CyanString(word))
