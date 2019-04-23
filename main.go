@@ -182,7 +182,7 @@ func colorize(line string) {
 			continue
 		}
 		switch strings.ToLower(word) {
-		case "error", "error:", "errors", "errors:", "abort", "quit", "no such file or directory":
+		case "error", "error:", "errors", "errors:", "abort", "quit", "no such file or directory", "failed", "failed:":
 			sb.WriteString(color.HiRedString(word))
 		case "warning", "warning:", "removed", "deleted", "erased", "o":
 			sb.WriteString(color.HiYellowString(word))
@@ -228,6 +228,10 @@ func main() {
 	} else {
 		scanner = bufio.NewScanner(os.Stdin)
 	}
+	// Increase the maximum line length to 1MB
+	buf := make([]byte, 0, 64*1024)
+	scanner.Buffer(buf, 1024*1024)
+	// Colorize the input data
 	for scanner.Scan() {
 		colorize(scanner.Text())
 	}
