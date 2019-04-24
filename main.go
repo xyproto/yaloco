@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-const versionString = "YaLoCo 1.2.2"
+const versionString = "YaLoCo 1.2.3"
 
 func init() {
 	color.NoColor = false
@@ -182,15 +182,15 @@ func colorize(line string) {
 			continue
 		}
 		switch strings.ToLower(word) {
-		case "error", "error:", "errors", "errors:", "abort", "quit", "no such file or directory", "failed", "failed:":
+		case "error", "error:", "errors", "errors:", "abort", "quit", "no such file or directory", "failed", "failed:", "failed,":
 			sb.WriteString(color.HiRedString(word))
 		case "warning", "warning:", "removed", "deleted", "erased", "o":
 			sb.WriteString(color.HiYellowString(word))
 		case "note", "note:":
 			sb.WriteString(color.HiGreenString(word))
-		case "cxx", "ld", "rm", "make", "strip", "ccgi", "opkg", "install", "run", "running", "move", "format", "upgrading", "gcc", "g++", "clang", "clang++", "complete":
+		case "cc", "cxx", "ld", "rm", "make", "strip", "ccgi", "opkg", "install", "run", "running", "move", "format", "upgrading", "gcc", "g++", "clang", "clang++", "complete":
 			sb.WriteString(color.BlueString(word))
-		case "upgraded", "installed", "moved", "ran", "formatted", "cp", "mv":
+		case "upgraded", "installed", "moved", "ran", "formatted", "cp", "mv", "ln":
 			sb.WriteString(color.MagentaString(word))
 		case "=", "==", ":=", "tar", "zip":
 			sb.WriteString(color.HiWhiteString(word))
