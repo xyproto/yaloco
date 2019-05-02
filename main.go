@@ -52,7 +52,7 @@ func colorize(line string) {
 		fmt.Println(color.CyanString(line))
 		return
 	}
-	if strings.Contains(trimmed, "***") || strings.Contains(trimmed, "===") {
+	if strings.Contains(trimmed, "***") || strings.Contains(trimmed, "===") || strings.Contains(trimmed, "No such file or directory") {
 		fmt.Println(color.RedString(line))
 		return
 	}
