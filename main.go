@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-const versionString = "YaLoCo 1.2.3"
+const versionString = "YaLoCo 1.2.4"
 
 func init() {
 	color.NoColor = false

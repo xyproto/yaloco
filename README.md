@@ -21,6 +21,6 @@ Colorize logs:
 
 ## General info
 
-* Version: 1.2.3
+* Version: 1.2.4
 * License: MIT
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
