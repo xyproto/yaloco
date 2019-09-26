@@ -1,8 +1,9 @@
-# github.com/fatih/color v1.7.0
-github.com/fatih/color
-# github.com/mattn/go-colorable v0.1.1
-github.com/mattn/go-colorable
-# github.com/mattn/go-isatty v0.0.7
-github.com/mattn/go-isatty
-# golang.org/x/sys v0.0.0-20190429190828-d89cdac9e872
+# github.com/pkg/term v0.0.0-20190109203006-aa71e9d9e942
+github.com/pkg/term
+github.com/pkg/term/termios
+# github.com/xyproto/stringpainter v0.0.0-20190926144552-ffacd4d1d120
+github.com/xyproto/stringpainter
+# github.com/xyproto/vt100 v1.4.0
+github.com/xyproto/vt100
+# golang.org/x/sys v0.0.0-20190924154521-2837fb4f24fe
 golang.org/x/sys/unix
