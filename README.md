@@ -12,11 +12,15 @@ Colorize logs:
 
     yaloco < /var/log/pacman.log
 
+## Requirements
+
+Go 1.14 or 1.15 is recommended.
+
 ## Installation
 
 ### Linux
 
-    go build
+    go build -mod=vendor
     sudo install -Dm755 yaloco /usr/bin/yaloco
 
 ## General info
