@@ -7,7 +7,7 @@ import (
 	"os"
 )
 
-const versionString = "YaLoCo 2.0.0"
+const versionString = "YaLoCo 1.3.0"
 
 func usage() {
 	fmt.Println("Please provide a filename as the first argument, or provide data on stdin.")

@@ -25,6 +25,6 @@ Go 1.14 or 1.15 is recommended.
 
 ## General info
 
-* Version: 2.0.0
+* Version: 1.3.0
 * License: MIT
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
