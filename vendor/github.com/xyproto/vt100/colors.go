@@ -38,14 +38,14 @@ var (
 	LightGray = NewAttributeColor("White")
 
 	// Light foreground colors (+ dark gray)
-	DarkGray     = NewAttributeColor("Bright", "Black")
-	LightRed     = NewAttributeColor("Bright", "Red")
-	LightGreen   = NewAttributeColor("Bright", "Green")
-	LightYellow  = NewAttributeColor("Bright", "Yellow")
-	LightBlue    = NewAttributeColor("Bright", "Blue")
-	LightMagenta = NewAttributeColor("Bright", "Magenta")
-	LightCyan    = NewAttributeColor("Bright", "Cyan")
-	White        = NewAttributeColor("Bright", "White")
+	DarkGray     = NewAttributeColor("90")
+	LightRed     = NewAttributeColor("91")
+	LightGreen   = NewAttributeColor("92")
+	LightYellow  = NewAttributeColor("93")
+	LightBlue    = NewAttributeColor("94")
+	LightMagenta = NewAttributeColor("95")
+	LightCyan    = NewAttributeColor("96")
+	White        = NewAttributeColor("97")
 
 	// Aliases
 	Pink = LightMagenta
@@ -88,8 +88,10 @@ var (
 		"Cyan":         Cyan,
 		"gray":         DarkGray,
 		"Gray":         DarkGray,
-		"white":        White,
-		"White":        White,
+		"white":        LightGray,
+		"White":        LightGray,
+		"lightwhite":   White,
+		"LightWhite":   White,
 		"darkred":      Red,
 		"DarkRed":      Red,
 		"darkgreen":    Green,
@@ -139,6 +141,8 @@ var (
 		"Gray":         LightGray,
 		"white":        White,
 		"White":        White,
+		"lightwhite":   White,
+		"LightWhite":   White,
 		"lightred":     LightRed,
 		"LightRed":     LightRed,
 		"lightgreen":   LightGreen,
@@ -211,35 +215,8 @@ func s2b(attribute string) byte {
 	return byte(num)
 }
 
-// For each element in a slice, apply the function f
-func mapSB(sl []string, f func(string) byte) []byte {
-	result := make([]byte, len(sl))
-	for i, s := range sl {
-		result[i] = f(s)
-	}
-	return result
-}
-
 func NewAttributeColor(attributes ...string) AttributeColor {
 	return AttributeColor(mapSB(attributes, s2b))
-}
-
-// For each element in a slice, apply the function f
-func mapS(sl []string, f func(string) string) []string {
-	result := make([]string, len(sl))
-	for i, s := range sl {
-		result[i] = f(s)
-	}
-	return result
-}
-
-// For each element in a slice, apply the function f
-func mapBS(bl []byte, f func(byte) string) []string {
-	result := make([]string, len(bl))
-	for i, b := range bl {
-		result[i] = f(b)
-	}
-	return result
 }
 
 func (ac AttributeColor) Head() byte {
@@ -332,7 +309,7 @@ func (ac AttributeColor) Combine(other AttributeColor) AttributeColor {
 	}
 	newAttributes := make(AttributeColor, len(amap))
 	index := 0
-	for attr, _ := range amap {
+	for attr := range amap {
 		newAttributes[index] = attr
 		index++
 	}
@@ -374,5 +351,13 @@ func TrueColor(fg color.Color, text string) string {
 
 // Equal checks if two colors have the same attributes, in the same order.
 func (ac AttributeColor) Equal(other AttributeColor) bool {
+	la := len(ac)
+	lo := len(other)
+	if la == 2 && lo == 2 {
+		return ac[0] == other[0] && ac[1] == other[1]
+	}
+	if la == 1 && lo == 1 {
+		return ac[0] == other[0]
+	}
 	return bytes.Equal(ac, other)
 }
