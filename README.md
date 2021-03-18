@@ -1,20 +1,20 @@
-# YaLoCo
+# Log colorizer
 
-Yet another log colorizer
+Bring some color to your build output and logs, to improve clarity and readability.
 
 ## Usage
 
-Colorize build information while building:
+* While building:
 
     make | yaloco
 
-Colorize logs:
+* Pacman logs:
 
     yaloco < /var/log/pacman.log
 
 ## Requirements
 
-Go 1.14 or 1.15 is recommended.
+* Go 1.14 or later
 
 ## Installation
 
