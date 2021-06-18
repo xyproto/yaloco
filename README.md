@@ -4,11 +4,11 @@ Bring some color to your build output and logs, to improve clarity and readabili
 
 ## Usage
 
-* While building:
+When building with `make`:
 
     make | yaloco
 
-* Pacman logs:
+Viewing `pacman` logs:
 
     yaloco < /var/log/pacman.log
 
