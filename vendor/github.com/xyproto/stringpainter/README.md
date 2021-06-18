@@ -1,7 +1,7 @@
 # stringpainter
 
-Given a string, return a highlighted string with some vt100 color applied to it.
+Given a string, return a highlighted string with terminal color codes applied.
 
-It's not configurable and not that pretty, but it works well for colorizing output when building C++ projects.
+This is not intended for syntax highlighting of source code, but of logs and build output.
 
-GPL2
+* License: GPL2
