@@ -1,4 +1,4 @@
-# Log colorizer
+## Yet another log colorizer
 
 Bring some color to your build output and logs, to improve clarity and readability.
 
@@ -25,6 +25,6 @@ Viewing `pacman` logs:
 
 ## General info
 
-* Version: 1.3.0
+* Version: 1.3.1
 * License: MIT
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
