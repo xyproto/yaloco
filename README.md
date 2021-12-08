@@ -18,13 +18,21 @@ Viewing `pacman` logs:
 
 ## Installation
 
-### Linux
+### With Go 1.17 or later
+
+    go install github.com/xyproto/yaloco@latest
+
+### From source, on Linux
 
     go build -mod=vendor
     sudo install -Dm755 yaloco /usr/bin/yaloco
 
+### Using the static executable, on 64-bit x86 Linux
+
+Just download the statically compiled executable from the "Releases" page, and use that.
+
 ## General info
 
-* Version: 1.3.1
+* Version: 1.3.2
 * License: MIT
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
