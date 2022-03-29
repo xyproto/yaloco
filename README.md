@@ -34,5 +34,5 @@ Just download the statically compiled executable from the "Releases" page, and u
 ## General info
 
 * Version: 1.3.2
-* License: MIT
+* License: BSD-3
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;
