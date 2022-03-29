@@ -1,7 +1,7 @@
 # github.com/pkg/term v1.2.0-beta.2.0.20210419004637-f749b98bd0ba
 github.com/pkg/term
 github.com/pkg/term/termios
-# github.com/xyproto/stringpainter v0.0.0-20210318111459-c4b128af0cc2
+# github.com/xyproto/stringpainter v1.0.0
 github.com/xyproto/stringpainter
 # github.com/xyproto/vt100 v1.9.12
 github.com/xyproto/vt100
