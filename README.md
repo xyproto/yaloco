@@ -1,6 +1,6 @@
 ## Yet another log colorizer
 
-Bring some color to your build output and logs, to improve clarity and readability.
+Bring some color to your build output and logs, to improve clarity and readability, and make it easier to spot errors.
 
 ## Usage
 
