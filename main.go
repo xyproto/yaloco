@@ -3,11 +3,12 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"github.com/xyproto/stringpainter"
 	"os"
+
+	"github.com/xyproto/vt"
 )
 
-const versionString = "Yaloco 1.3.3"
+const versionString = "Yaloco 1.3.4"
 
 func usage() {
 	fmt.Println("Please provide a filename as the first argument, or provide data on stdin.")
@@ -40,7 +41,7 @@ func main() {
 	scanner.Buffer(buf, 1024*1024)
 	// Colorize the input data
 	for scanner.Scan() {
-		fmt.Println(stringpainter.Colorize(scanner.Text()))
+		fmt.Println(vt.Colorize(scanner.Text()))
 	}
 	if err := scanner.Err(); err != nil {
 		fmt.Fprintln(os.Stderr, "reading standard input:", err)
