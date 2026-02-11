@@ -1,10 +1,9 @@
-//go:build !windows
-
 package vt
 
 import (
 	"errors"
 	"fmt"
+	"io"
 	"strconv"
 	"time"
 	"unicode"
@@ -321,59 +320,13 @@ func (tty *TTY) WriteString(s string) error {
 	return nil
 }
 
-// ReadString reads a string from the TTY with timeout
+// ReadString reads a string from the TTY
 func (tty *TTY) ReadString() (string, error) {
-	// Set up a timeout channel
-	timeout := time.After(100 * time.Millisecond)
-	resultChan := make(chan string, 1)
-	errorChan := make(chan error, 1)
-
-	go func() {
-		// Set raw mode temporarily
-		tty.RawMode()
-		defer tty.Restore()
-		defer tty.Flush()
-
-		var result []byte
-		buffer := make([]byte, 1)
-
-		for {
-			n, err := tty.t.Read(buffer)
-			if err != nil {
-				errorChan <- err
-				return
-			}
-			if n > 0 {
-				// For terminal responses, look for bell character (0x07) which terminates OSC sequences
-				if buffer[0] == 0x07 || buffer[0] == '\a' {
-					resultChan <- string(result)
-					return
-				}
-				// Also break on ESC sequence end for some terminals
-				if len(result) > 0 && buffer[0] == '\\' && result[len(result)-1] == 0x1b {
-					resultChan <- string(result)
-					return
-				}
-				result = append(result, buffer[0])
-
-				// Prevent infinite reading - limit response size
-				if len(result) > 512 {
-					resultChan <- string(result)
-					return
-				}
-			}
-		}
-	}()
-
-	select {
-	case result := <-resultChan:
-		return result, nil
-	case err := <-errorChan:
+	b, err := io.ReadAll(tty.t)
+	if err != nil {
 		return "", err
-	case <-timeout:
-		// Timeout - return empty string (no error, just no response from terminal)
-		return "", nil
 	}
+	return string(b), nil
 }
 
 // PrintRawBytes for debugging raw byte sequences
