@@ -16,6 +16,7 @@ func usage() {
 
 func main() {
 	var scanner *bufio.Scanner
+	var inputSource string = "standard input"
 	if len(os.Args) > 1 {
 		if os.Args[1] == "-V" || os.Args[1] == "--version" {
 			fmt.Println(versionString)
@@ -31,6 +32,8 @@ func main() {
 				fmt.Fprintln(os.Stderr, err)
 				os.Exit(1)
 			}
+			defer f.Close()
+			inputSource = os.Args[1]
 			scanner = bufio.NewScanner(f)
 		}
 	} else {
@@ -44,7 +47,7 @@ func main() {
 		fmt.Println(vt.Colorize(scanner.Text()))
 	}
 	if err := scanner.Err(); err != nil {
-		fmt.Fprintln(os.Stderr, "reading standard input:", err)
+		fmt.Fprintf(os.Stderr, "reading %s: %v\n", inputSource, err)
 		os.Exit(1)
 
 	}
