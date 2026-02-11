@@ -33,6 +33,6 @@ Just download the statically compiled executable from the "Releases" page, and u
 
 ## General info
 
-* Version: 1.3.4
+* Version: 1.3.5
 * License: BSD-3
 * Author: Alexander F. Rødseth &lt;xyproto@archlinux.org&gt;

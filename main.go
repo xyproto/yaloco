@@ -8,7 +8,7 @@ import (
 	"github.com/xyproto/vt"
 )
 
-const versionString = "Yaloco 1.3.4"
+const versionString = "Yaloco 1.3.5"
 
 func usage() {
 	fmt.Println("Please provide a filename as the first argument, or provide data on stdin.")
